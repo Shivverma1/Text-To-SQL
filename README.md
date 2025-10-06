@@ -1,12 +1,73 @@
-# LLM-Text-to-SQL-Architectures
+# LLM-Text-to-SQL Architectures
 
-A comprehensive guide and implementation of architectural patterns that utilize Large Language Models (LLMs) for the efficient generation of SQL from natural language text.
+A comprehensive guide and implementation of architectural patterns that utilize **Large Language Models (LLMs)** for efficient generation of SQL queries from natural language text.
 
-For comprehensive details on the architectural patterns mentioned below, please refer to the accompanying article on Medium. This piece delves into the utilization of LLMS for enhanced BigQuery interactions. You can access the article via this link.
+---
 
-[Architectural Patterns for Text-to-SQL: Leveraging LLMs for Enhanced BigQuery Interactions](https://medium.com/@shankar.arunp/architectural-patterns-for-text-to-sql-leveraging-llms-for-enhanced-bigquery-interactions-59756a749e15?source=friends_link&sk=22b06c1644e968023b24db79f2995588)
+## 🚀 Overview
 
-ributing 🤝
+This project demonstrates how to leverage **LLMs** to convert user queries in natural language into accurate SQL queries.  
+It supports schema-aware reasoning, multi-turn conversations, and **retrieval-augmented generation (RAG)** for enhanced query accuracy, particularly targeting **BigQuery** interactions.
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. Check out CONTRIBUTING.md for guidelines on how to submit pull requests.
+---
 
+## 🎯 Problem Statement
+
+- Users often struggle with **SQL syntax** and database schema knowledge.  
+- Existing solutions may generate **incomplete or incorrect queries**.  
+- Goal: Build a **scalable, reliable system** that converts natural language queries into SQL accurately.
+
+---
+
+## 🏗 Architectural Design
+
+### Key Components
+
+1. **User Input Layer**  
+   - Accepts queries via Web app, chat, or API.  
+
+2. **LLM Processing Layer**  
+   - Uses LLM (OpenAI GPT, LLaMA, or HuggingFace models).  
+   - Incorporates **prompt engineering** for schema-awareness.  
+
+3. **Schema & Context Module**  
+   - Provides table and column metadata.  
+   - Supplies past query examples for better accuracy.  
+
+4. **RAG (Retrieval-Augmented Generation) Layer**  
+   - Embedding-based retrieval using **FAISS/Chroma**.  
+   - Retrieves relevant past queries and documentation for context grounding.  
+
+5. **SQL Generator & Optimizer**  
+   - Converts LLM output into syntactically correct SQL.  
+   - Optimizes queries for database performance.  
+
+6. **Execution & Feedback Module**  
+   - Executes SQL queries.  
+   - Returns results to the user.  
+   - Stores feedback for continuous improvement.
+
+---
+
+### Architecture Diagram
+
+```text
+User Query
+    │
+    ▼
+Input Layer (Web/API)
+    │
+    ▼
+LLM Processing Layer (Prompt Engineering)
+    │
+    ├── Schema & Context Module
+    └── RAG Layer (Past Queries/Docs)
+    │
+    ▼
+SQL Generator & Optimizer
+    │
+    ▼
+Execution & Feedback (BigQuery)
+    │
+    ▼
+Results to User
